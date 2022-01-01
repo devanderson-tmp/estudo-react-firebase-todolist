@@ -1,7 +1,7 @@
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
 
-function Cadastro() {
+function Login() {
 	function handleSubmit(email: string, senha: string) {
 		console.log(email, senha);
 	}
@@ -9,14 +9,14 @@ function Cadastro() {
 	return (
 		<Container>
 			<FormPrincipal
-				titulo="Cadastro"
+				titulo="Login"
 				funcaoSubmit={handleSubmit}
-				textoBotao="Cadastrar"
-				url="/"
-				textoLink="Voltar para login"
+				textoBotao="Entrar"
+				url="/cadastro"
+				textoLink="Criar conta"
 			/>
 		</Container>
 	);
 }
 
-export default Cadastro;
+export default Login;

@@ -1,15 +1,15 @@
 import {render, screen} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
-import Cadastro from '.';
+import Login from '.';
 
 describe('Cadastro', () => {
 	it('has a title', () => {
 		render(
 			<BrowserRouter>
-				<Cadastro />
+				<Login />
 			</BrowserRouter>
 		);
-		const title = screen.getByText('Cadastro');
+		const title = screen.getByText('Login');
 		expect(title).toBeInTheDocument();
 	});
 });
