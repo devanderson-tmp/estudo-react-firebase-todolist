@@ -1,16 +1,15 @@
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
+import useAuth from '../../hooks/useAuth';
 
 function Login() {
-	function handleSubmit(email: string, senha: string) {
-		console.log(email, senha);
-	}
+	const {signInWithEmailAndPassword} = useAuth();
 
 	return (
 		<Container>
 			<FormPrincipal
 				titulo="Login"
-				funcaoSubmit={handleSubmit}
+				funcaoSubmit={signInWithEmailAndPassword}
 				textoBotao="Entrar"
 				url="/cadastro"
 				textoLink="Criar conta"

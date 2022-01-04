@@ -5,7 +5,7 @@ import Box from './style';
 
 type FormPrincipal = {
 	titulo: string;
-	funcaoSubmit: (email: string, password: string) => void;
+	funcaoSubmit: (email: string, password: string) => Promise<void>;
 	textoBotao: string;
 	url: string;
 	textoLink: string;

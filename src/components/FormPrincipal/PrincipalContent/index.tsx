@@ -16,7 +16,7 @@ const validationSchema = yup.object({
 });
 
 type PrincipalContent = {
-	funcaoSubmit: (email: string, password: string) => void;
+	funcaoSubmit: (email: string, password: string) => Promise<void>;
 	textoBotao: string;
 };
 

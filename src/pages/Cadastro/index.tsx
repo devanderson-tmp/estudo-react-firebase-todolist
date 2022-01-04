@@ -1,9 +1,14 @@
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
+import {auth} from '../../services/firebase';
 
 function Cadastro() {
-	function handleSubmit(email: string, senha: string) {
-		console.log(email, senha);
+	async function handleSubmit(email: string, senha: string) {
+		const result = await auth.createUserWithEmailAndPassword(email, senha);
+
+		if (result.user) {
+			alert('Conta criada com sucesso!');
+		}
 	}
 
 	return (
