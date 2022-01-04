@@ -1,14 +1,17 @@
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
-import {auth} from '../../services/firebase';
+import {auth, firebase} from '../../services/firebase';
 
 function Cadastro() {
 	async function handleSubmit(email: string, senha: string) {
-		const result = await auth.createUserWithEmailAndPassword(email, senha);
-
-		if (result.user) {
-			alert('Conta criada com sucesso!');
-		}
+		await auth
+			.createUserWithEmailAndPassword(email, senha)
+			.catch((error: firebase.FirebaseError) => {
+				console.log(error);
+				if (error.code === 'auth/email-already-in-use') {
+					alert('E-mail já está em uso');
+				}
+			});
 	}
 
 	return (
