@@ -15,7 +15,7 @@ function PrincipalLink({url, children}: PrincipalLink) {
 			underline="hover"
 			variant="body1"
 			align="center"
-			sx={{display: 'block', mt: 2.5}}>
+			sx={{color: '#1c1c1c', display: 'block', mt: 2.5}}>
 			{children}
 		</Link>
 	);
