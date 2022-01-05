@@ -1,4 +1,11 @@
-import {createContext, ReactNode, useEffect, useState} from 'react';
+import {
+	createContext,
+	Dispatch,
+	ReactNode,
+	SetStateAction,
+	useEffect,
+	useState,
+} from 'react';
 import {auth} from '../services/firebase';
 
 type Usuario = {
@@ -8,10 +15,7 @@ type Usuario = {
 
 type AuthContext = {
 	usuario: Usuario | undefined;
-	signInWithEmailAndPassword: (
-		email: string,
-		password: string
-	) => Promise<void>;
+	setUsuario: Dispatch<SetStateAction<Usuario | undefined>>;
 };
 
 const AuthContext = createContext({} as AuthContext);
@@ -34,21 +38,8 @@ function AuthContextProvider({children}: {children: ReactNode}) {
 		return () => unsubscribe();
 	}, [setUsuario]);
 
-	async function signInWithEmailAndPassword(email: string, password: string) {
-		const result = await auth.signInWithEmailAndPassword(email, password);
-
-		if (result.user) {
-			const {uid, email} = result.user;
-
-			setUsuario({
-				uid,
-				email,
-			});
-		}
-	}
-
 	return (
-		<AuthContext.Provider value={{usuario, signInWithEmailAndPassword}}>
+		<AuthContext.Provider value={{usuario, setUsuario}}>
 			{children}
 		</AuthContext.Provider>
 	);

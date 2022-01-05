@@ -9,17 +9,13 @@ import {
 	TextField,
 } from '@mui/material';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
-import {useNavigate} from 'react-router-dom';
 
 const validationSchema = yup.object({
 	email: yup
 		.string()
 		.email('Insira um e-mail válido')
 		.required('E-mail é obrigatório'),
-	password: yup
-		.string()
-		.min(8, 'Senha deve ter no mínimo 8 caracteres')
-		.required('Senha é obrigatório'),
+	password: yup.string().required('Senha é obrigatório'),
 });
 
 type PrincipalContent = {
@@ -28,17 +24,13 @@ type PrincipalContent = {
 };
 
 function PrincipalContent({funcaoSubmit, textoBotao}: PrincipalContent) {
-	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			email: '',
 			password: '',
 		},
 		validationSchema: validationSchema,
-		onSubmit: async values => {
-			await funcaoSubmit(values.email, values.password);
-			navigate('/home');
-		},
+		onSubmit: async values => await funcaoSubmit(values.email, values.password),
 	});
 	const [showPassword, setShowPassword] = useState(false);
 
@@ -94,7 +86,11 @@ function PrincipalContent({funcaoSubmit, textoBotao}: PrincipalContent) {
 				/>
 
 				<Button variant="contained" type="submit" size="large">
-					{formik.isSubmitting ? <CircularProgress /> : textoBotao}
+					{formik.isSubmitting ? (
+						<CircularProgress color="secondary" />
+					) : (
+						textoBotao
+					)}
 				</Button>
 			</form>
 		</>
