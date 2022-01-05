@@ -1,3 +1,4 @@
+import toast, {Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
@@ -12,7 +13,12 @@ function Cadastro() {
 			.catch((error: firebase.FirebaseError) => {
 				console.log(error);
 				if (error.code === 'auth/email-already-in-use') {
-					alert('E-mail já está em uso');
+					toast.error('E-mail já está em uso', {
+						ariaProps: {
+							role: 'alert',
+							'aria-live': 'polite',
+						},
+					});
 				}
 			});
 	}
@@ -26,6 +32,7 @@ function Cadastro() {
 				url="/"
 				textoLink="Voltar para login"
 			/>
+			<Toaster />
 		</Container>
 	);
 }

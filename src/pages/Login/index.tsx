@@ -1,3 +1,4 @@
+import toast, {Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
 import Container from '../../components/Container';
 import FormPrincipal from '../../components/FormPrincipal';
@@ -24,7 +25,14 @@ function Login() {
 				}
 			})
 			.catch((error: firebase.FirebaseError) => {
-				console.log(error);
+				if (error.code === 'auth/user-not-found') {
+					toast.error('Não encontramos uma conta com esse endereço de email', {
+						ariaProps: {
+							role: 'alert',
+							'aria-live': 'polite',
+						},
+					});
+				}
 			});
 	}
 
@@ -37,6 +45,7 @@ function Login() {
 				url="/cadastro"
 				textoLink="Criar conta"
 			/>
+			<Toaster />
 		</Container>
 	);
 }
