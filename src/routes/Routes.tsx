@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {BrowserRouter, Route, Routes as DomRoutes} from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import Cadastro from '../pages/Cadastro';
+import Home from '../pages/Home';
 import Login from '../pages/Login';
 
 function Routes() {
@@ -20,14 +21,7 @@ function Routes() {
 						<Route path="/cadastro" element={<Cadastro />} />
 					</>
 				) : (
-					<Route
-						path="/home"
-						element={
-							<div>
-								<h1>Home</h1>
-							</div>
-						}
-					/>
+					<Route path="/home" element={<Home />} />
 				)}
 				<Route
 					path="*"
