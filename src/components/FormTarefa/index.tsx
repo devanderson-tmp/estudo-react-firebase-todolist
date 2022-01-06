@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import * as yup from 'yup';
-import {Button, TextField} from '@mui/material';
+import {Box, Button, TextField} from '@mui/material';
 
 const validationSchema = yup.object({
 	tarefa: yup.string().required('Tarefa é obrigatório'),
@@ -18,8 +18,8 @@ function FormTarefa() {
 	});
 
 	return (
-		<>
-			<form onSubmit={formik.handleSubmit}>
+		<form onSubmit={formik.handleSubmit}>
+			<Box sx={{alignItems: 'flex-start', display: 'flex'}}>
 				<TextField
 					type="text"
 					name="tarefa"
@@ -29,7 +29,9 @@ function FormTarefa() {
 					error={formik.touched.tarefa && Boolean(formik.errors.tarefa)}
 					helperText={formik.touched.tarefa && formik.errors.tarefa}
 					value={formik.values.tarefa}
-					label="Tarefa"
+					label="Adicione um novo estudo"
+					variant="standard"
+					placeholder="O que você quer estudar?"
 				/>
 
 				<TextField
@@ -42,13 +44,14 @@ function FormTarefa() {
 					helperText={formik.touched.tempo && formik.errors.tempo}
 					value={formik.values.tempo}
 					label="Tempo"
+					variant="standard"
 				/>
+			</Box>
 
-				<Button variant="contained" type="submit">
-					Adicionar
-				</Button>
-			</form>
-		</>
+			<Button variant="contained" type="submit">
+				Adicionar
+			</Button>
+		</form>
 	);
 }
 
