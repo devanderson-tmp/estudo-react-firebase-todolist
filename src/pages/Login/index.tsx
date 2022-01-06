@@ -33,6 +33,15 @@ function Login() {
 						},
 					});
 				}
+
+				if (error.code === 'auth/wrong-password') {
+					toast.error('Sua senha está incorreta', {
+						ariaProps: {
+							role: 'alert',
+							'aria-live': 'polite',
+						},
+					});
+				}
 			});
 	}
 
