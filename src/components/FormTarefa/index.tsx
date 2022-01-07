@@ -5,6 +5,9 @@ import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
 import {DateTime} from 'luxon';
+import {db} from '../../services/firebase';
+import {tempoParaSegundos} from '../../utils/tempo';
+import useAuth from '../../hooks/useAuth';
 
 const validationSchema = yup.object({
 	tarefa: yup.string().required('Tarefa é obrigatório'),
@@ -22,14 +25,30 @@ const validationSchema = yup.object({
 });
 
 function FormTarefa() {
+	const {usuario} = useAuth();
 	const formik = useFormik({
 		initialValues: {
 			tarefa: '',
 			tempo: DateTime.local().set({hour: 0, minute: 5, second: 0}),
 		},
 		validationSchema: validationSchema,
-		onSubmit: values =>
-			console.log(values.tempo.hour, values.tempo.minute, values.tempo.second),
+		onSubmit: async values => {
+			const tarefas = await db
+				.collection('usuarios')
+				.doc(`${usuario?.uid}`)
+				.collection('tarefas');
+
+			tarefas.add({
+				completada: false,
+				selecionada: false,
+				tarefa: values.tarefa,
+				tempo: tempoParaSegundos(
+					values.tempo.hour,
+					values.tempo.minute,
+					values.tempo.second
+				),
+			});
+		},
 	});
 
 	return (
