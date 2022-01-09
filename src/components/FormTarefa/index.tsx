@@ -6,8 +6,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
 import {DateTime} from 'luxon';
 import {db} from '../../services/firebase';
-import {tempoParaSegundos} from '../../utils/tempo';
 import useAuth from '../../hooks/useAuth';
+import {tempoParaString} from '../../utils/tempo';
 
 const validationSchema = yup.object({
 	tarefa: yup.string().required('Tarefa é obrigatório'),
@@ -40,9 +40,8 @@ function FormTarefa() {
 
 			tarefas.add({
 				completada: false,
-				selecionada: false,
 				tarefa: values.tarefa,
-				tempo: tempoParaSegundos(
+				tempo: tempoParaString(
 					values.tempo.hour,
 					values.tempo.minute,
 					values.tempo.second
