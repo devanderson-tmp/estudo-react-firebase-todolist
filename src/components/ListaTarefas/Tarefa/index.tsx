@@ -8,13 +8,7 @@ import {
 } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 import {db} from '../../../services/firebase';
-
-type Tarefa = {
-	id: string;
-	completada: false;
-	tarefa: string;
-	tempo: string;
-};
+import {Tarefa} from '../../../types/tarefa';
 
 function ItemTarefa({id, tarefa, tempo}: Tarefa) {
 	const {usuario} = useAuth();

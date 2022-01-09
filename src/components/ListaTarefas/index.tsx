@@ -3,13 +3,7 @@ import {List, Typography} from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import {db} from '../../services/firebase';
 import ItemTarefa from './Tarefa';
-
-type Tarefa = {
-	id: string;
-	completada: false;
-	tarefa: string;
-	tempo: string;
-};
+import {Tarefa} from '../../types/tarefa';
 
 function ListaTarefas() {
 	const [tarefas, setTarefas] = useState<Tarefa[]>([]);
