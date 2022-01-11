@@ -1,6 +1,6 @@
 export type Tarefa = {
 	id: string;
-	completada: false;
+	completada: boolean;
 	tarefa: string;
 	tempo: string;
 };
