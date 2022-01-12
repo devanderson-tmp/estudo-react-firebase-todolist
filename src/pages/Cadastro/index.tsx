@@ -1,6 +1,6 @@
 import toast, {Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-import Container from '../../components/Container';
+import FormPrincipalContainer from '../../components/FormPrincipalContainer';
 import FormPrincipal from '../../components/FormPrincipal';
 import {auth, firebase} from '../../services/firebase';
 
@@ -24,7 +24,7 @@ function Cadastro() {
 	}
 
 	return (
-		<Container>
+		<FormPrincipalContainer>
 			<FormPrincipal
 				titulo="Cadastro"
 				funcaoSubmit={handleSubmit}
@@ -33,7 +33,7 @@ function Cadastro() {
 				textoLink="Voltar para login"
 			/>
 			<Toaster />
-		</Container>
+		</FormPrincipalContainer>
 	);
 }
 
