@@ -1,7 +1,6 @@
-import {Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import PrincipalContent from './PrincipalContent';
 import PrincipalLink from './PrincipalLink';
-import Box from './style';
 
 type FormPrincipal = {
 	titulo: string;
@@ -19,7 +18,15 @@ function FormPrincipal({
 	textoLink,
 }: FormPrincipal) {
 	return (
-		<Box>
+		<Box
+			sx={{
+				backgroundColor: '#faffe2',
+				borderRadius: '1rem',
+				boxShadow: '0 1px 4px rgba(66, 52, 64, .2)',
+				maxWidth: '404px',
+				padding: '3rem 2.5rem',
+				width: '100%',
+			}}>
 			<Typography component="h1" variant="h4" sx={{mb: 2.5}} align="center">
 				{titulo}
 			</Typography>

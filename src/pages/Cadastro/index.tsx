@@ -1,6 +1,6 @@
+import {Box} from '@mui/material';
 import toast, {Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-import FormPrincipalContainer from '../../components/FormPrincipalContainer';
 import FormPrincipal from '../../components/FormPrincipal';
 import {auth, firebase} from '../../services/firebase';
 
@@ -24,7 +24,13 @@ function Cadastro() {
 	}
 
 	return (
-		<FormPrincipalContainer>
+		<Box
+			sx={{
+				alignItems: 'center',
+				display: 'flex',
+				minHeight: '100vh',
+				justifyContent: 'center',
+			}}>
 			<FormPrincipal
 				titulo="Cadastro"
 				funcaoSubmit={handleSubmit}
@@ -33,7 +39,7 @@ function Cadastro() {
 				textoLink="Voltar para login"
 			/>
 			<Toaster />
-		</FormPrincipalContainer>
+		</Box>
 	);
 }
 

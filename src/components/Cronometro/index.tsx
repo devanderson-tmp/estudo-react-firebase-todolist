@@ -1,5 +1,5 @@
 import {Pause, PlayArrow, Stop} from '@mui/icons-material';
-import {IconButton, Stack} from '@mui/material';
+import {Box, IconButton, Stack} from '@mui/material';
 import {useEffect, useState} from 'react';
 import useTarefaSelecionada from '../../hooks/useTarefaSelecionada';
 import {tempoParaSegundos} from '../../utils/tempo';
@@ -54,7 +54,7 @@ function Cronometro({checkTarefa}: Cronometro) {
 	}
 
 	return (
-		<>
+		<Box alignItems="center" display="flex" flexDirection="column">
 			<Relogio tempo={tempo} />
 			<Stack direction="row" alignItems="center" spacing={1}>
 				<IconButton onClick={play} aria-label="play">
@@ -67,7 +67,7 @@ function Cronometro({checkTarefa}: Cronometro) {
 					<Stop />
 				</IconButton>
 			</Stack>
-		</>
+		</Box>
 	);
 }
 

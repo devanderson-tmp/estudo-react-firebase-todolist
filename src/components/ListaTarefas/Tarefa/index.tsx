@@ -13,7 +13,7 @@ import {Tarefa} from '../../../types/tarefa';
 
 function ItemTarefa({completada, id, tarefa, tempo}: Tarefa) {
 	const {usuario} = useAuth();
-	const {setTarefaSelecionada} = useTarefaSelecionada();
+	const {tarefaSelecionada, setTarefaSelecionada} = useTarefaSelecionada();
 
 	function handleDelete() {
 		const tarefaRef = db
@@ -40,9 +40,26 @@ function ItemTarefa({completada, id, tarefa, tempo}: Tarefa) {
 			}}
 			disablePadding
 			secondaryAction={
-				<IconButton edge="end" aria-label="excluir" onClick={handleDelete}>
+				<IconButton
+					edge="end"
+					aria-label="excluir"
+					onClick={handleDelete}
+					sx={
+						tarefaSelecionada?.id === id
+							? {
+									':hover': {
+										bgcolor: 'primary.light',
+									},
+							  }
+							: undefined
+					}>
 					<Delete />
 				</IconButton>
+			}
+			sx={
+				tarefaSelecionada?.id === id
+					? {bgcolor: 'primary.main', color: 'white'}
+					: undefined
 			}>
 			<ListItemButton>
 				<ListItemText

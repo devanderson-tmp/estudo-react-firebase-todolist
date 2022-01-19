@@ -1,9 +1,9 @@
 import toast, {Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-import FormPrincipalContainer from '../../components/FormPrincipalContainer';
 import FormPrincipal from '../../components/FormPrincipal';
 import useAuth from '../../hooks/useAuth';
 import {auth, firebase} from '../../services/firebase';
+import {Box} from '@mui/material';
 
 function Login() {
 	const {setUsuario} = useAuth();
@@ -46,7 +46,13 @@ function Login() {
 	}
 
 	return (
-		<FormPrincipalContainer>
+		<Box
+			sx={{
+				alignItems: 'center',
+				display: 'flex',
+				minHeight: '100vh',
+				justifyContent: 'center',
+			}}>
 			<FormPrincipal
 				titulo="Login"
 				funcaoSubmit={handleSubmit}
@@ -55,7 +61,7 @@ function Login() {
 				textoLink="Criar conta"
 			/>
 			<Toaster />
-		</FormPrincipalContainer>
+		</Box>
 	);
 }
 

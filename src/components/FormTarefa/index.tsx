@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import * as yup from 'yup';
-import {Box, Button, TextField} from '@mui/material';
+import {Button, TextField} from '@mui/material';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
@@ -8,6 +8,7 @@ import {DateTime} from 'luxon';
 import {db} from '../../services/firebase';
 import useAuth from '../../hooks/useAuth';
 import {tempoParaString} from '../../utils/tempo';
+import {Box} from '@mui/system';
 
 const validationSchema = yup.object({
 	tarefa: yup.string().required('Tarefa é obrigatório'),
@@ -52,46 +53,71 @@ function FormTarefa() {
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
-			<Box sx={{alignItems: 'flex-start', display: 'flex'}}>
-				<TextField
-					type="text"
-					name="tarefa"
-					id="tarefa"
-					onBlur={formik.handleBlur}
-					onChange={formik.handleChange}
-					error={formik.touched.tarefa && Boolean(formik.errors.tarefa)}
-					helperText={formik.touched.tarefa && formik.errors.tarefa}
-					value={formik.values.tarefa}
-					label="Adicione um novo estudo"
-					variant="standard"
-					placeholder="O que você quer estudar?"
-				/>
-
-				<LocalizationProvider dateAdapter={DateAdapter}>
-					<TimePicker
-						ampm={false}
-						openTo="hours"
-						views={['hours', 'minutes', 'seconds']}
-						inputFormat="HH:mm:ss"
-						mask="__:__:__"
-						onChange={value => formik.setFieldValue('tempo', value)}
-						value={formik.values.tempo}
-						label="Tempo"
-						renderInput={params => (
-							<TextField
-								{...params}
-								error={formik.touched.tempo && Boolean(formik.errors.tempo)}
-								helperText={formik.touched.tempo && formik.errors.tempo}
-								variant="standard"
-							/>
-						)}
+			<Box display="flex" flexDirection="column">
+				<Box
+					sx={[
+						{
+							display: 'flex',
+							justifyContent: 'space-between',
+						},
+						theme => ({
+							[theme.breakpoints.between('xs', 'sm')]: {
+								flexDirection: 'column',
+							},
+						}),
+					]}>
+					<TextField
+						type="text"
+						name="tarefa"
+						id="tarefa"
+						onBlur={formik.handleBlur}
+						onChange={formik.handleChange}
+						error={formik.touched.tarefa && Boolean(formik.errors.tarefa)}
+						helperText={formik.touched.tarefa && formik.errors.tarefa}
+						value={formik.values.tarefa}
+						label="Adicione um novo estudo"
+						variant="standard"
+						placeholder="O que você quer estudar?"
+						sx={[
+							{flexGrow: 1, mr: 1},
+							theme => ({
+								[theme.breakpoints.down('md')]: {
+									mb: 1,
+									mr: 0,
+								},
+							}),
+						]}
 					/>
-				</LocalizationProvider>
-			</Box>
 
-			<Button variant="contained" type="submit">
-				Adicionar
-			</Button>
+					<LocalizationProvider dateAdapter={DateAdapter}>
+						<TimePicker
+							ampm={false}
+							openTo="hours"
+							views={['hours', 'minutes', 'seconds']}
+							inputFormat="HH:mm:ss"
+							mask="__:__:__"
+							onChange={value => formik.setFieldValue('tempo', value)}
+							value={formik.values.tempo}
+							label="Tempo"
+							renderInput={params => (
+								<TextField
+									{...params}
+									error={formik.touched.tempo && Boolean(formik.errors.tempo)}
+									helperText={formik.touched.tempo && formik.errors.tempo}
+									variant="standard"
+								/>
+							)}
+						/>
+					</LocalizationProvider>
+				</Box>
+
+				<Button
+					variant="contained"
+					type="submit"
+					sx={{alignSelf: 'center', mt: 2}}>
+					Adicionar
+				</Button>
+			</Box>
 		</form>
 	);
 }

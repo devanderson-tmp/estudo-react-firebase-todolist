@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {List, Typography} from '@mui/material';
+import {Box, List, Typography} from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import {db} from '../../services/firebase';
 import ItemTarefa from './Tarefa';
@@ -30,7 +30,16 @@ function ListaTarefas() {
 	}, [usuario]);
 
 	return (
-		<>
+		<Box
+			sx={[
+				{marginLeft: 2},
+				theme => ({
+					[theme.breakpoints.down('md')]: {
+						marginLeft: 0,
+						marginTop: 4,
+					},
+				}),
+			]}>
 			<Typography variant="h5" component="div" align="center">
 				Estudos do dia
 			</Typography>
@@ -39,7 +48,7 @@ function ListaTarefas() {
 					<ItemTarefa key={tarefa.id} {...tarefa} />
 				))}
 			</List>
-		</>
+		</Box>
 	);
 }
 

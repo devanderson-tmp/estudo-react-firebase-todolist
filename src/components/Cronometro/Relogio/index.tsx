@@ -1,4 +1,4 @@
-import {Typography} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 
 function Relogio({tempo}: {tempo: number}) {
 	const minutos = Math.floor(tempo / 60);
@@ -7,7 +7,7 @@ function Relogio({tempo}: {tempo: number}) {
 	const [segDez, segUn] = String(segundos).padStart(2, '0');
 
 	return (
-		<>
+		<Box my={4}>
 			<Typography variant="h3" component="span">
 				{minDez}
 			</Typography>
@@ -23,7 +23,7 @@ function Relogio({tempo}: {tempo: number}) {
 			<Typography variant="h3" component="span">
 				{segUn}
 			</Typography>
-		</>
+		</Box>
 	);
 }
 
