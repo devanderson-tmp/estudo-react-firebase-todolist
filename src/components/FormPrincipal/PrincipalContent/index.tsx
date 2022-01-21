@@ -83,6 +83,7 @@ function PrincipalContent({funcaoSubmit, textoBotao}: PrincipalContent) {
 						),
 					}}
 					sx={{mb: '2.5rem', mt: '1.5rem'}}
+					autoComplete="on"
 				/>
 
 				<Button variant="contained" type="submit" size="large">

@@ -2,6 +2,7 @@ import {Box, Container, Grid} from '@mui/material';
 import Cronometro from '../../components/Cronometro';
 import FormTarefa from '../../components/FormTarefa';
 import ListaTarefas from '../../components/ListaTarefas';
+import Perfil from '../../components/Perfil';
 import {TarefaSelecionadaProvider} from '../../contexts/TarefaSelecionadaContext';
 import useAuth from '../../hooks/useAuth';
 import {db} from '../../services/firebase';
@@ -26,6 +27,10 @@ function Home() {
 
 	return (
 		<TarefaSelecionadaProvider>
+			<Container component="header">
+				<Perfil />
+			</Container>
+
 			<Container component="main">
 				<Box
 					sx={[
